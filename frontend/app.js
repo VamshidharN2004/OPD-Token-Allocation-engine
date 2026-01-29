@@ -16,7 +16,6 @@ async function onboardDoctor() {
         const data = await res.json();
         log(`Created Doctor: <b>${data.name}</b> <br><span style="color:#64748b; font-size:0.8em">ID: ${data.id}</span>`);
 
-        // Auto fill
         document.getElementById('slotDocId').value = data.id;
         document.getElementById('bookDocId').value = data.id;
         document.getElementById('viewDocId').value = data.id;
@@ -49,7 +48,7 @@ async function createSlot() {
         }
 
         const data = await res.json();
-        log(`Created Slot: ${data.startTime}-${data.endTime}`);
+        log(`Created Slot: ${data.date} ${formatTime(data.startTime)} to ${formatTime(data.endTime)}`);
         loadSlots();
     } catch (e) {
         log('Error: ' + e.message);
@@ -141,7 +140,7 @@ async function loadSlots() {
                 </div>
                 <div style="display:flex; gap: 5px;">
                     <button onclick="markNoShow('${t.id}')" class="btn-icon ${isNoShow ? 'btn-warning' : 'btn-danger'}" style="width: auto; padding: 4px 8px;" title="Toggle No-Show">${btnText}</button>
-                    <button onclick="cancelToken('${t.id}')" class="btn-icon btn-danger" style="width: auto; padding: 4px 8px; background: transparent; border: 1px solid #ef4444;" title="Cancel">✕</button>
+                    <button onclick="cancelToken('${t.id}')" class="btn-icon" style="width: auto; padding: 4px 8px; background: transparent; border: 1px solid #ef4444; color: #ef4444;" title="Cancel">✕</button>
                 </div>
             </div>
            `;
@@ -180,7 +179,7 @@ async function loadSlots() {
 
     } catch (e) {
         console.error(e);
-        alert(e.message); // Show error to user
+        alert(e.message);
         const container = document.getElementById('slotsContainer');
         container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--danger);">${e.message}</div>`;
     }
@@ -208,7 +207,6 @@ async function cancelToken(tokenId) {
 }
 
 async function markNoShow(tokenId) {
-    // if (!confirm('Toggle No-Show status?')) return; 
     try {
         await fetch(`${API_BASE}/tokens/${tokenId}/noshow`, { method: 'POST' });
         log(`🚫 Toggled No-Show`);

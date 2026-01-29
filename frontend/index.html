@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MEDOC | OPD Allocator</title>
-    <!-- Modern Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -23,7 +22,6 @@
 
         <div class="layout-grid">
 
-            <!-- 1. Onboard Doctor -->
             <div class="card area-onboard">
                 <h3>👨‍⚕️ Onboard Doctor</h3>
                 <div class="form-group">
@@ -61,7 +59,6 @@
                 <button onclick="createSlot()">Add Slot</button>
             </div>
 
-            <!-- 4. Book Token -->
             <div class="card area-book">
                 <h3>🎫 Book Appointment</h3>
                 <div class="form-group">
@@ -89,15 +86,13 @@
                 <button onclick="bookToken()">Issue Token</button>
             </div>
 
-            <!-- 2. Live Dashboard -->
             <div class="card area-dashboard">
                 <h3>
                     📊 Live Operations Dashboard
                     <div style="margin-left: auto; display: flex; gap: 10px;">
                         <input type="text" id="viewDocId" placeholder="Search Doctor ID..."
                             style="width: 250px; padding: 8px 12px;">
-                        <button onclick="loadSlots()" class="btn-icon"
-                            style="background: var(--primary);">Refresh</button>
+                        <button onclick="loadSlots()" class="btn-icon" style="background: var(--primary);">View</button>
                     </div>
                 </h3>
 
@@ -109,11 +104,9 @@
                 </div>
             </div>
 
-            <!-- 5. Logs -->
             <div class="card area-logs">
                 <h3>📡 System logs & Events</h3>
                 <div id="logs" class="log-container">
-                    <!-- Logs go here -->
                 </div>
             </div>
 

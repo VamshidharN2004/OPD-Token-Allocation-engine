@@ -14,8 +14,6 @@ public class Token implements Comparable<Token> {
     private TokenStatus status;
     private String assignedSlotId;
     private LocalDateTime createdAt;
-
-    // For tracking waiting time / order
     private long globalOrder;
 
     public Token(String patientName, TokenSource source) {
@@ -28,12 +26,10 @@ public class Token implements Comparable<Token> {
 
     @Override
     public int compareTo(Token other) {
-        // Lower priorityLevel wins (1 is Emergency, 5 is Walk-in)
         int priorityComparison = Integer.compare(this.source.getPriorityLevel(), other.source.getPriorityLevel());
         if (priorityComparison != 0) {
             return priorityComparison;
         }
-        // If same priority, FIFO (First In First Out)
         return this.createdAt.compareTo(other.createdAt);
     }
 }

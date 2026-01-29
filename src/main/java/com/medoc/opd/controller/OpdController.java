@@ -80,8 +80,8 @@ public class OpdController {
     @Data
     public static class SlotRequest {
         private String doctorId;
-        private String date; // YYYY-MM-DD
-        private String startTime; // HH:mm
+        private String date;
+        private String startTime;
         private String endTime;
         private int capacity;
     }
@@ -89,7 +89,7 @@ public class OpdController {
     @Data
     public static class BookingRequest {
         private String doctorId;
-        private String date; // YYYY-MM-DD
+        private String date;
         private String patientName;
         private TokenSource source;
     }
