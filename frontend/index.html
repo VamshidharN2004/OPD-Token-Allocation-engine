@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEDOC | OPD Allocator</title>
+    <!-- Modern Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>MEDOC</h1>
+            <div class="subtitle">Advanced OPD Token & Resource Allocator</div>
+        </header>
+
+        <div class="layout-grid">
+
+            <!-- 1. Onboard Doctor -->
+            <div class="card area-onboard">
+                <h3>👨‍⚕️ Onboard Doctor</h3>
+                <div class="form-group">
+                    <label>Doctor Name</label>
+                    <input type="text" id="docName" placeholder="e.g. Dr. Gregory House">
+                </div>
+                <div class="form-group">
+                    <label>Specialization</label>
+                    <input type="text" id="docSpec" placeholder="e.g. Diagnostics">
+                </div>
+                <button onclick="onboardDoctor()">Create Profile</button>
+            </div>
+
+            <div class="card area-slot">
+                <h3>📅 Create Time Slot</h3>
+                <div class="form-group">
+                    <label>Target Doctor ID</label>
+                    <input type="text" id="slotDocId" placeholder="Enter Doctor ID...">
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="slotDate">
+                </div>
+                <div class="form-group">
+                    <label>Time Window</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="time" id="startTime" value="09:00">
+                        <input type="time" id="endTime" value="10:00">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Max Patients (Hard Limit)</label>
+                    <input type="number" id="capacity" value="2" min="1">
+                </div>
+                <button onclick="createSlot()">Add Slot</button>
+            </div>
+
+            <!-- 4. Book Token -->
+            <div class="card area-book">
+                <h3>🎫 Book Appointment</h3>
+                <div class="form-group">
+                    <label>Target Doctor ID</label>
+                    <input type="text" id="bookDocId" placeholder="Enter Doctor ID...">
+                </div>
+                <div class="form-group">
+                    <label>Appointment Date</label>
+                    <input type="date" id="bookDate">
+                </div>
+                <div class="form-group">
+                    <label>Patient Name</label>
+                    <input type="text" id="patName" placeholder="Patient Name">
+                </div>
+                <div class="form-group">
+                    <label>Priority Source</label>
+                    <select id="source">
+                        <option value="WALK_IN">Walk In (Standard) [5]</option>
+                        <option value="ONLINE">Online Booking [4]</option>
+                        <option value="FOLLOW_UP">Follow Up Checkup [3]</option>
+                        <option value="PAID_PREMIUM">Premium / VIP [2]</option>
+                        <option value="EMERGENCY">🚨 EMERGENCY (Override) [1]</option>
+                    </select>
+                </div>
+                <button onclick="bookToken()">Issue Token</button>
+            </div>
+
+            <!-- 2. Live Dashboard -->
+            <div class="card area-dashboard">
+                <h3>
+                    📊 Live Operations Dashboard
+                    <div style="margin-left: auto; display: flex; gap: 10px;">
+                        <input type="text" id="viewDocId" placeholder="Search Doctor ID..."
+                            style="width: 250px; padding: 8px 12px;">
+                        <button onclick="loadSlots()" class="btn-icon"
+                            style="background: var(--primary);">Refresh</button>
+                    </div>
+                </h3>
+
+                <div id="slotsContainer" class="slot-container">
+                    <div
+                        style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted); border: 2px dashed var(--border); border-radius: 10px;">
+                        Enter a Doctor ID above to view live slots.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Logs -->
+            <div class="card area-logs">
+                <h3>📡 System logs & Events</h3>
+                <div id="logs" class="log-container">
+                    <!-- Logs go here -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+
+</body>
+
+</html>
